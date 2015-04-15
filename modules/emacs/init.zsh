@@ -4,6 +4,14 @@
 # Authors: Sebastian Wiesner <lunaryorn@gmail.com>
 #
 
+if [ -d /Applications/Emacs.app/Contents/MacOS/bin ]; then
+   path=(
+        /Applications/Emacs.app/Contents/MacOS/bin
+        $path
+        )
+   export EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+fi
+
 # Return if requirements are not found.
 if [[ ! -d "$HOME/.cask" ]]; then
   return 1
