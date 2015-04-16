@@ -36,7 +36,8 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'haskell' \
   'ssh' \
-  'postgresapp'
+  'postgresapp' \
+  'node'
 
 #
 # Editor
@@ -157,5 +158,8 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
+# Node
+zstyle ':prezto:module:node:info:version' format 'version:%v'
+
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'

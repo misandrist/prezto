@@ -32,3 +32,32 @@ if (( $+commands[npm] )); then
 
   unset cache_file
 fi
+
+node_modules_path () {
+    for p in $path; do
+        if [[ $p =~ node_modules ]]; then
+            i=$path[(i)$p]
+            path[i]=()
+        fi
+    done
+
+    d=$PWD
+    while [[ $d != "/" ]]; do
+        p=$d/node_modules
+        if [[ -d $p ]]; then
+            for b in $p/*/bin; do
+                path=(
+                    $b
+                    $path
+                )
+            done
+            break;
+        fi
+        d=$(dirname $d)
+    done
+}
+
+chpwd_functions=(
+    node_modules_path
+    $chpwd_functions
+    )

@@ -20,9 +20,12 @@ path=(
 
 sandbox_path () {
     oldd=$OLDPWD/.cabal-sandbox/bin
-    if [[ -d $oldd ]]; then
-        shift path
-    fi
+    for p in $path; do
+        if [[ $p =~ $oldd ]]; then
+            i=$path[(i)$p]
+            path[i]=()
+        fi
+    done
 
     d=$PWD
     while [[ $d != "/" ]]; do
