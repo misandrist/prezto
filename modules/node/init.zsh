@@ -6,13 +6,16 @@
 #   Zeh Rizzatti <zehrizzatti@gmail.com>
 #
 
-# Load NVM into the shell session.
+# Load manually installed NVM into the shell session.
 if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
   source "$HOME/.nvm/nvm.sh"
-fi
+
+# Load package manager installed NVM into the shell session.
+elif (( $+commands[brew] )) && [[ -d "$(brew --prefix nvm 2>/dev/null)" ]]; then
+  source $(brew --prefix nvm)/nvm.sh
 
 # Return if requirements are not found.
-if (( ! $+commands[node] )); then
+elif (( ! $+commands[node] )); then
   return 1
 fi
 
@@ -30,3 +33,31 @@ if (( $+commands[npm] )); then
   unset cache_file
 fi
 
+node_modules_path () {
+    for p in $path; do
+        if [[ $p =~ node_modules ]]; then
+            i=$path[(i)$p]
+            path[i]=()
+        fi
+    done
+
+    d=$PWD
+    while [[ $d != "/" ]]; do
+        p=$d/node_modules
+        if [[ -d $p ]]; then
+            for b in $p/*/bin; do
+                path=(
+                    $b
+                    $path
+                )
+            done
+            break;
+        fi
+        d=$(dirname $d)
+    done
+}
+
+chpwd_functions=(
+    node_modules_path
+    $chpwd_functions
+    )

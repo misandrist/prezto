@@ -24,6 +24,7 @@ zstyle ':prezto:*:*' color 'yes'
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
+  'emacs' \
   'environment' \
   'terminal' \
   'editor' \
@@ -35,8 +36,9 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'haskell' \
   'ssh' \
-  'tmux' \
-  'postgresapp'
+  'postgresapp' \
+  'node' \
+  'tmux'
 
 #
 # Editor
@@ -156,3 +158,9 @@ zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Auto start a session when Zsh is launched in a SSH connection.
 zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+
+# Node
+zstyle ':prezto:module:node:info:version' format 'version:%v'
+
+# Integrate with iTerm2.
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'
