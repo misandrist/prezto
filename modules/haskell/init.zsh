@@ -16,3 +16,4 @@ if [[ "$OSTYPE" == darwin* && -d $HOME/Library/Haskell ]]; then
 else
   path=(./.cabal-sandbox/bin $HOME/.cabal/bin(/N) $path)
 fi
+
