@@ -38,11 +38,15 @@ zstyle ':prezto:load' pmodule \
   'ssh' \
   'postgresapp' \
   'node' \
+  'utility' \
   'tmux'
 
 #
 # Editor
 #
+
+# Set the emacs style
+zstyle ':prezto:module:emacs' system MacPorts
 
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'emacs'

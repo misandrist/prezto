@@ -5,16 +5,12 @@
 #   Sebastian Wiesner <lunaryorn@googlemail.com>
 #
 
-# Return if requirements are not found.
-if (( ! $+commands[ghc] )); then
-  return 1
-fi
-
 # Prepend Cabal per user directories to PATH.
 path=(
     ./.cabal-sandbox/bin(/N)
     $HOME/Library/Haskell/bin(/N)
     $HOME/.cabal/bin(/N)
+    /opt/local/ghc/7.10/bin(/N)
     $path
 )
 

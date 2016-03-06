@@ -4,12 +4,29 @@
 # Authors: Sebastian Wiesner <lunaryorn@gmail.com>
 #
 
-if [ -d /Applications/Emacs.app/Contents/MacOS/bin ]; then
-   path=(
-        /Applications/Emacs.app/Contents/MacOS/bin
+# Styles:
+#
+# zstyle ':prezto:module:emacs' system MacPorts
+# zstyle ':prezto:module:emacs' system AquaMacs
+# zstyle ':prezto:module:emacs' system Unix
+
+OS_X_APPS_ROOT=/Applications
+OS_X_EMACS=/Contents/MacOS/Emacs
+OS_X_EMACS_BIN=/Contents/MacOS/bin
+
+if zstyle -t ":prezto:module:emacs" system MacPorts; then
+    OS_X_APPS_ROOT=${OS_X_APPS_ROOT}/MacPorts
+fi
+
+if zstyle -t ":prezto:module:emacs" system MacPorts AquaMacs; then
+    EMACS_ROOT=${OS_X_APPS_ROOT}/Emacs.app
+    EMACS=${EMACS_ROOT}/Contents/MacOS/Emacs
+    EMACS_BIN=${EMACS_ROOT}/Contents/MacOS/bin
+    path=(
+        ${EMACS_BIN}
         $path
-        )
-   export EMACS=/Applications/Emacs.app/Contents/MacOS/Emacs
+    )
+    export EMACS=${EMACS}
 fi
 
 # Return if requirements are not found.
