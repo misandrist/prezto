@@ -20,10 +20,11 @@ base_modules="stat cap complete"
 linux_modules_extra="attr"
 
 if [ $(uname) = "Linux" ]; then
-    load_zmodules="${base_modules} ${linux_modules_extra}"
+    zstyle ':prezto:load' zmodule 'stat' 'cap' 'complete' 'attr'
+else
+    zstyle ':prezto:load' zmodule 'stat' 'cap' 'complete'
 fi
 
-zstyle ':prezto:load' zmodule ${load_zmodules}
 
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':prezto:load' zfunction 'zargs' 'zmv'
