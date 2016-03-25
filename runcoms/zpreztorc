@@ -16,7 +16,14 @@
 zstyle ':prezto:*:*' color 'yes'
 
 # Set the Zsh modules to load (man zshmodules).
-zstyle ':prezto:load' zmodule 'attr' 'stat' 'cap' 'complete'
+base_modules="stat cap complete"
+linux_modules_extra="attr"
+
+if [ $(uname) = "Linux" ]; then
+    load_zmodules="${base_modules} ${linux_modules_extra}"
+fi
+
+zstyle ':prezto:load' zmodule ${load_zmodules}
 
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':prezto:load' zfunction 'zargs' 'zmv'
