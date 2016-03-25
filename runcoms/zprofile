@@ -17,9 +17,9 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
-export PAGER='less'
+export EDITOR='emacsclient'
+export VISUAL='emacsclient'
+export PAGER='most'
 
 #
 # Language
@@ -44,8 +44,6 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/{bin,sbin}
-  /opt/local/bin
-  /opt/local/X11/bin
   $path
 )
 

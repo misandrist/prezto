@@ -16,7 +16,7 @@
 zstyle ':prezto:*:*' color 'yes'
 
 # Set the Zsh modules to load (man zshmodules).
-# zstyle ':prezto:load' zmodule 'attr' 'stat'
+zstyle ':prezto:load' zmodule 'attr' 'stat' 'cap' 'complete'
 
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':prezto:load' zfunction 'zargs' 'zmv'
@@ -25,6 +25,8 @@ zstyle ':prezto:*:*' color 'yes'
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'emacs' \
+  'gnu-utility' \
+  'utility' \
   'environment' \
   'terminal' \
   'editor' \
@@ -36,9 +38,8 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'haskell' \
   'ssh' \
-  'postgresapp' \
   'node' \
-  'utility' \
+  'gpg' \
   'tmux'
 
 #
@@ -46,7 +47,7 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the emacs style
-zstyle ':prezto:module:emacs' system MacPorts
+zstyle ':prezto:module:emacs' system Unix
 
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'emacs'
@@ -66,7 +67,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 #
 
 # Set the command prefix on non-GNU systems.
-# zstyle ':prezto:module:gnu-utility' prefix 'g'
+zstyle ':prezto:module:gnu-utility' prefix 'g'
 
 #
 # History Substring Search
@@ -158,13 +159,10 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 #
 
 # Auto start a session when Zsh is launched in a local terminal.
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:auto-start' local 'no'
 
 # Auto start a session when Zsh is launched in a SSH connection.
 zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Node
 zstyle ':prezto:module:node:info:version' format 'version:%v'
-
-# Integrate with iTerm2.
-zstyle ':prezto:module:tmux:iterm' integrate 'yes'
