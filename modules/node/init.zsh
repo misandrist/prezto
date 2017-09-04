@@ -33,31 +33,55 @@ if (( $+commands[npm] )); then
   unset cache_file
 fi
 
-node_modules_path () {
-    for p in $path; do
-        if [[ $p =~ node_modules ]]; then
-            i=$path[(i)$p]
-            path[i]=()
-        fi
-    done
+setup_npm_global_root() {
+    local npm_global_root;
 
-    d=$PWD
-    while [[ $d != "/" ]]; do
-        p=$d/node_modules
-        if [[ -d $p ]]; then
-            for b in $p/*/bin; do
-                path=(
-                    $b
-                    $path
-                )
-            done
-            break;
-        fi
-        d=$(dirname $d)
-    done
+    zstyle -g npm_global_root ':prezto:module:node:npm' global_root
+
+    if [ -n "$npm_global_root" ]; then
+        export NPM_PACKAGES="${npm_global_root}"
+        path=(
+            "${npm_global_root}/bin"
+            "${path[@]}"
+        )
+        manpath=("${npm_global_root}/man" "${manpath[@]}")
+    fi
 }
 
-chpwd_functions=(
-    node_modules_path
-    $chpwd_functions
-    )
+init_node_modules_hook () {
+    node_modules_paths=(node_modules/.bin)
+
+    _local_node_modules_path () {
+        local -a pths
+
+        local oldd i p
+        oldd=$OLDPWD
+
+        for ((i=1; i <= ${#path}; i+=1)); do
+            p=${path[$i]}
+
+            if [[ $p =~ $oldd ]]; then
+                path[i]=()
+            fi
+        done
+
+        local d
+        d=$PWD
+        while [ $d != "/" ]; do
+            for p in ${node_modules_paths[@]}; do
+                if [ -d "$d/$p" ]; then
+                    path=($d/$p $path)
+                    break
+                fi
+            done
+
+            d=$(dirname $d)
+        done
+    }
+
+    autoload -Uz add-zsh-hook
+    add-zsh-hook preexec _local_node_modules_path
+}
+
+setup_npm_global_root
+init_node_modules_hook

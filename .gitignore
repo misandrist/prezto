@@ -3,3 +3,5 @@
 modules/*/cache.zsh
 *~
 *#*
+flymd.*
+.markdown-preview.html

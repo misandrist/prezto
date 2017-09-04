@@ -10,4 +10,33 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-export EDITOR=emacsclient GIT_EDITOR=emacsclient PAGER=most GIT_PAGER=most
+export DEBEMAIL="evan@theunixman.com"
+export EMAIL="evan@theunixman.com"
+export DEBFULLNAME="Evan Cofsky"
+export FULLNAME="Evan Cofsky"
+
+export CC=/usr/bin/clang-4.0
+export CXX=/usr/bin/clang++-4.0
+export CPP_FLAGS=-I/opt/acml/include
+export JAVA_OPTS="-Xmx512m -Xss256k"
+
+_set_extra_paths () {
+    extra_paths=(/opt/xorg/bin /opt/amdgpu-pro/bin /projects/texmf/2017/bin/x86_64-linux /opt/qt59/5.9.1/gcc_64/bin /opt/SfM/bin)
+
+    for p in ${extra_paths[@]}; do
+        if [[ -d "$p" ]]; then
+            path=($p $path)
+        fi
+
+	pkc=$(dirname $p)/lib/pkgconfig
+	if [[ -d "$pkc" ]]; then
+            PKG_CONFIG_PATH="${pkc}:$PKG_CONFIG_PATH"
+	fi
+    done
+
+    export PKG_CONFIG_PATH
+}
+
+_set_extra_paths
+
+unset _set_extra_paths

@@ -9,4 +9,3 @@ Authors
   - [Evan Cofsky](https://gitlab.com/u/misandrist)
 
 [1]: http://postgresapp.com/
-

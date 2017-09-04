@@ -13,6 +13,48 @@ if (( ! $+commands[tmux] )); then
   return 1
 fi
 
+
+# Version -> Feature map
+declare -A -r version_features=(
+    "tmux_2.1" "tmpdir"
+)
+
+declare -r tmux_version="$(tmux -V | sed 's/[ .]/_/g')"
+declare -r -a tmux_features=("${(ws#:#)vsns[${tmux_version}]}")
+
+require_feature() {
+    local -r feature=$1; shift
+
+    return [ -n "${tmux_features[(r)${feature}]}"]
+}
+
+# Check for the TMUX_TMPDIR setting
+zstyle -s ':prezto:module:tmux:socketdir' tmux_tmpdir TMUX_TMPDIR
+
+ensure_tmux_tmpdir() {
+    local -r tmpdir="$1"
+
+    if ! mkdir -p "$tmpdir"; then
+        echo "WARNING: could not create tmux_tmpdir: ${tmpdir}"
+        return 1
+    fi
+}
+
+# Support for version of tmux without TMUX_TMPDIR support
+_tmux_no_tmpdir() {
+    tmux -S $TMUX_TMPDIR "$@"
+}
+
+if [ -n "$TMUX_TMPDIR" -a ! -d "$TMUX_TMPDIR" ]; then
+    ensure_tmux_tmpdir "$TMUX_TMPDIR" || unset TMUX_TMPDIR
+
+    if ! require_feature tmpdir; then
+        alias tmux=_tmux_no_tmpdir
+    else
+        export TMUX_TMPDIR
+    fi
+fi
+
 #
 # Auto Start
 #
