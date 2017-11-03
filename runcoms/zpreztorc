@@ -97,9 +97,8 @@ zstyle ':prezto:module:gnu-utility' prefix 'g'
 #
 
 zstyle ':prezto:module:history-substring-search' color 'yes'
-zstyle ':prezto:module:history-substring-search:color' found 'cyan'
+zstyle ':prezto:module:history-substring-search:color' found 'green'
 zstyle ':prezto:module:history-substring-search:color' not-found 'magenta'
-
 
 #
 # Prompt
@@ -110,8 +109,6 @@ zstyle ':prezto:module:history-substring-search:color' not-found 'magenta'
 # Auto set to 'off' on dumb terminals.
 
 zstyle ':prezto:module:prompt' theme misandrist default black
-
-# zstyle ':prezto:module:prompt' theme 'sorin'
 
 #
 # SSH

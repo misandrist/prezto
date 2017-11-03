@@ -15,8 +15,8 @@ export EMAIL="evan@theunixman.com"
 export DEBFULLNAME="Evan Cofsky"
 export FULLNAME="Evan Cofsky"
 
-export CC=/usr/bin/clang
-export CXX=/usr/bin/clang++
+export CC=/usr/bin/clang-4.0
+export CXX=/usr/bin/clang++-4.0
 export JAVA_OPTS="-Xmx512m -Xss256k"
 
 typeset -aU _extra_root_paths=(
