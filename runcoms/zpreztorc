@@ -162,17 +162,17 @@ zstyle ':prezto:environment:termcap' color
 
 # Don't use tmux locally, but use it remotely
 zstyle ':prezto:module:tmux:auto-start' local 'no'
-zstyle ':prezto:module:tmux:auto-start' remote 'yes'
+zstyle ':prezto:module:tmux:auto-start' remote 'no'
 
 # Load our npmrc
 zstyle ':prezto:module:misandrist:node' load_npmrc "yes"
+zstyle ':prezto:module:node:npm' global_root /projects/misandrist/npm-packages
 
 # Use our own dircolors
 zstyle ':prezto:module:misandrist:dircolors' misandrist "yes"
 
 # Use hvr's GHC.
 zstyle ':prezto:module:haskell' hvr "yes"
-zstyle ':prezto:module:haskell' global-sandbox "/projects/haskell/sandbox"
 
 ## Local Variables:
 ## mode: sh
