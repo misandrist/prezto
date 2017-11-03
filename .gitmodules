@@ -22,3 +22,6 @@
 [submodule "modules/misandrist-prezto"]
         path = modules/misandrist-prezto
         url = git@gitlab.com:misandrist-environment/zsh/modules/misandrist-prezto.git
+[submodule "modules/misandrist"]
+	path = modules/misandrist
+	url = git@gitlab.com:misandrist-environment/zsh/modules/misandrist.git
