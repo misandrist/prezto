@@ -1,2 +1,1 @@
-(("z*" . ((sh-mode . t)
-          (sh-set-shell . "zsh"))))
+((sh-mode . ((sh-shell . "zsh"))))
