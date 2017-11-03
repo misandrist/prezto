@@ -82,7 +82,7 @@ _init_sandbox_hook () {
     }
 
     autoload -Uz add-zsh-hook
-    add-zsh-hook preexec _local_cabal_sandbox_path
+    # add-zsh-hook preexec _local_cabal_sandbox_path
 }
 
 _hvr
