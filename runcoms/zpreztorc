@@ -162,8 +162,7 @@ zstyle ':prezto:module:tmux:auto-start' local 'no'
 zstyle ':prezto:module:tmux:auto-start' remote 'no'
 
 # Load our npmrc
-zstyle ':prezto:module:misandrist:node' load_npmrc "yes"
-zstyle ':prezto:module:node:npm' global_root /projects/misandrist/npm-packages
+zstyle ':prezto:module:misandrist:npm' global_root "npmrc"
 
 # Use our own dircolors
 zstyle ':prezto:module:misandrist:dircolors' misandrist "yes"

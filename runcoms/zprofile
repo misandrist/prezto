@@ -20,17 +20,8 @@ fi
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
 
-
-if [[ -d /projects/misandrist/System/bin ]]; then
-    path=(/projects/misandrist/System/bin "${path[@]}")
-fi
-
 alias atop='tmux new-window -t 9 -n atop "sudo atop"'
 alias jnettop='tmux new-window -t 8 -n jnettop "sudo jnettop"'
-
-if [[ -d /opt/qt56/bin ]]; then
-    path=(/opt/qt56/bin "${path[@]}")
-fi
 
 ZSHPROFILE_RAN=yes
 

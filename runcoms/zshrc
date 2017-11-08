@@ -24,6 +24,6 @@ if [ -f $HOME/.zprofile -a -z "$ZSHPROFILE_RAN" ]; then
 fi
 
 # Set MANPATH
-#export MANPATH="${manpath[@]}:$(manpath)"
+export MANPATH="${manpath[@]}:$(manpath)"
 
 unset ZSHPROFILE_RAN
