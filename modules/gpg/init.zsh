@@ -75,6 +75,14 @@ gpgv2_init() {
         _ssh_agent_sock="${_gpg_agent_ssh_socket}"
         export SSH_AUTH_SOCK="${_ssh_agent_sock}"
 
+        # Wait for the socket to appear
+        for ((i = 0; i < 10; i++)); do
+            [ -S ${SSH_AUTH_SOCK} ] && break
+            sleep 1
+        done
+
+        [ ! -S ${SSH_AUTH_SOCK} ] && echo "${SSH_AUTH_SOCK}: not found" >&2
+
         # Load the SSH module for additional processing.
         pmodload 'ssh'
 
