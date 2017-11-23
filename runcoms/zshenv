@@ -15,15 +15,13 @@ export EMAIL="evan@theunixman.com"
 export DEBFULLNAME="Evan Cofsky"
 export FULLNAME="Evan Cofsky"
 
-export CC=/usr/bin/clang-4.0
-export CXX=/usr/bin/clang++-4.0
 export JAVA_OPTS="-Xmx512m -Xss256k"
 
 typeset -aU _extra_root_paths=(
     /opt/mutt
+    /opt/rocm
     /opt/amdgpu-pro
     /opt/qt59
-    /opt/visualization
     /projects/texmf/2017
 )
 
@@ -59,6 +57,12 @@ function _set_extra_paths () {
 path=(/home/evan/.emacs.d/term-cmd $path)
 
 _set_extra_paths
+
+export OPENCL_ROOT=/opt/rocm/opencl
+export AMDAPPSDK=/opt/rocm/opencl
+
+export CC=$(which clang)
+export CXX=$(which clang++)
 
 unset _set_extra_paths _extra_root_paths _join_paths
 

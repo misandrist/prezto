@@ -23,6 +23,24 @@ typeset -gU cdpath fpath mailpath path
 alias atop='tmux new-window -t 9 -n atop "sudo atop"'
 alias jnettop='tmux new-window -t 8 -n jnettop "sudo jnettop"'
 
+xr () {
+    local -r cmd="$1"; shift
+    local -ra args=("$@");
+
+    local -r cmd_rp=$(realpath "${cmd}")
+    local -r cmd_pth=$([[ -x "${cmd_rp}" ]] || which "${cmd}" 2>/dev/null)
+
+    if [[ ! "${DISPLAY}" ]]; then
+        echo "No DISPLAY found to run: $cmd ${args[@]}" >&2
+        return 1
+    elif [[ ! "${cmd_pth}" ]]; then
+        echo "Could not find any executable for ${cmd}" >&2
+	return 1
+    fi
+
+    (cd $HOME; "${cmd}" "${args[@]}" >> $HOME/.xsession-errors 2>&1 < /dev/null &! )
+}
+
 ZSHPROFILE_RAN=yes
 
 ## Local Variables:
